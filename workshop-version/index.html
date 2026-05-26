@@ -1274,6 +1274,30 @@ h3.slide-title {
   margin-top: 0.55rem;
 }
 
+.artifact-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 2;
+}
+
+.artifact-links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.artifact-links a:hover,
+.artifact-links a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+
 .prompt {
   position: relative;
 }
@@ -1334,6 +1358,8 @@ h3.slide-title {
   <div class="tool-group">
     <div class="tool-heading">Related pages</div>
     <a class="tool-link" href="../" target="_blank" rel="noopener">Primary deck <span>open</span></a>
+    <a class="tool-link" href="https://gamma.app/docs/53026-NLU-Colloquium-Beyond-Secondary-Orality-Tertiary-Algorithm-ycan6xud9456uel" target="_blank" rel="noopener">Gamma version <span>open</span></a>
+    <a class="tool-link" href="https://minerclass.github.io/dissertation-overview/" target="_blank" rel="noopener">Dissertation companion site <span>open</span></a>
     <a class="tool-link" href="https://minerclass.github.io/dissertationquestionsbeta/dissertation-sites/" target="_blank" rel="noopener">Dissertation research hub <span>open</span></a>
     <a class="tool-link" href="https://minerclass.github.io/qualifying-dissertation-resource-site/" target="_blank" rel="noopener">Qualifying paper resource hub <span>open</span></a>
     <a class="tool-link" href="https://minerclass.github.io/nlu_ai-ed-conference-pres26/aaacs-frictionless-citizen/" target="_blank" rel="noopener">Frictionless Citizen option <span>open</span></a>
@@ -1829,11 +1855,12 @@ h3.slide-title {
         </div>
         <div style="border-left: 1px solid var(--rule-strong); padding-left: 2rem;">
           <div class="eyebrow" style="margin-bottom: 1rem;">Companion artifacts</div>
-          <ul style="list-style: none; padding: 0; font-family: var(--mono); font-size: 0.85rem; color: var(--ink); line-height: 2;">
+          <ul class="artifact-links">
             <li>→ friction-audit · printable handout</li>
-            <li>→ tertiary-algorithmicity.site</li>
-            <li>→ pedagogical-friction-companion</li>
-            <li>→ the-long-arc-of-machine-intelligence</li>
+            <li>→ <a href="https://gamma.app/docs/53026-NLU-Colloquium-Beyond-Secondary-Orality-Tertiary-Algorithm-ycan6xud9456uel" target="_blank" rel="noopener">Gamma presentation version</a></li>
+            <li>→ <a href="https://minerclass.github.io/dissertation-overview/" target="_blank" rel="noopener">Dissertation companion site</a></li>
+            <li>→ <a href="https://minerclass.github.io/qualifying-dissertation-resource-site/" target="_blank" rel="noopener">Qualifying paper resource hub</a></li>
+            <li>→ <a href="https://minerclass.github.io/nlu_ai-ed-conference-pres26/aaacs-frictionless-citizen/" target="_blank" rel="noopener">Frictionless Citizen option</a></li>
           </ul>
           <div class="byline" style="margin-top: 2.5rem;">
             <strong>Micah J. Miner, CETL, Ed.S.</strong>
