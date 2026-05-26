@@ -1,10 +1,10 @@
-# AI, Learning, and Productive Struggle
+# Pedagogical Friction and AI
 
-Static GitHub Pages slide deck for Micah J. Miner's National Louis University doctoral colloquium session.
+Static GitHub Pages slide deck for Micah J. Miner's National Louis University AI session.
 
 ## Purpose
 
-This deck reframes the prior qualifying-paper presentation into a 70-minute, learning-first colloquium for doctoral students and alumni. It begins with a concrete student-learning problem before moving into Ong, media ecology, tertiary algorithmicity, unproductive success, and pedagogical friction.
+This deck supports the session "AI Session: Pedagogical Friction and AI." It frames generative AI as a structural challenge to learning because students can produce correct-looking work without the cognitive struggle required for durable understanding. The deck introduces tertiary algorithmicity, unproductive success, and pedagogical friction as a response framework for educators who want AI to reduce exclusionary barriers while preserving the human work of thinking and meaning-making.
 
 ## Files
 

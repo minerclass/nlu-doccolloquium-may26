@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A 70-minute NLU doctoral colloquium deck on generative AI, learning, productive struggle, and pedagogical friction.">
-  <title>AI, Learning, and Productive Struggle - NLU Doctoral Colloquium</title>
+  <meta name="description" content="AI Session: Pedagogical Friction and AI, a presentation by Micah Miner on generative AI, unproductive success, tertiary algorithmicity, and durable learning.">
+  <title>Pedagogical Friction and AI - NLU Doctoral Colloquium</title>
   <style>
     :root {
       --paper: #f7f3ec;
@@ -870,14 +870,14 @@
     </div>
   </aside>
   <main class="deck" aria-live="polite">
-    <section class="slide active dark compact" data-title="AI, Learning, and Productive Struggle">
-      <div class="meta"><span><i class="dot"></i>National Louis University - Doctoral Colloquium</span><span>01 / 22</span></div>
+    <section class="slide active dark compact" data-title="Pedagogical Friction and AI">
+      <div class="meta"><span><i class="dot"></i>AI Session - National Louis University</span><span>01 / 22</span></div>
       <div class="content">
-        <div class="kicker">70-minute accessible session</div>
-        <h1>AI, Learning, and Productive Struggle</h1>
-        <p class="subtitle">When generative AI can produce the work students used to do to learn, educators have to protect the thinking that still matters.</p>
+        <div class="kicker">AI Session</div>
+        <h1>Pedagogical Friction and AI</h1>
+        <p class="subtitle">How generative AI can create unproductive success, why tertiary algorithmicity changes the work of learning, and how educators can preserve the human effort needed for deep understanding.</p>
       </div>
-      <div class="footer"><span>Micah J. Miner, CETL, Ed.S.</span><span>Curriculum, Advocacy, and Policy</span></div>
+      <div class="footer"><span>Presenter: Micah J. Miner, CETL, Ed.S.</span><span>Curriculum, Advocacy, and Policy</span></div>
       <aside class="speaker-notes">
         Open by naming the session as a learning design problem, not a tool demonstration. The chair's charge is to help doctoral students and alumni understand how generative AI can affect cognitive development and learning in positive and negative ways, and why educators must design for optimal human learning.
       </aside>
@@ -1270,7 +1270,7 @@
         slide.setAttribute("aria-hidden", String(!active));
       });
       counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
-      document.title = `${slides[current].dataset.title} - NLU Doctoral Colloquium`;
+      document.title = `${slides[current].dataset.title} - NLU AI Session`;
       previousButton.disabled = current === 0;
       nextButton.disabled = current === slides.length - 1;
       const hash = `#${current + 1}`;
