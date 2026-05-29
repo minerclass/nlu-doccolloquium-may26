@@ -837,17 +837,30 @@ h3.slide-title {
 .quadrants .row-head { display: flex; align-items: center; writing-mode: vertical-rl; transform: rotate(180deg); justify-content: center; border-right: 1px solid var(--rule); }
 
 .quadrant {
-  padding: 1.5rem;
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  padding: 1.1rem;
   border: 1px solid var(--rule);
-  min-height: 130px;
+  min-height: 158px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  cursor: pointer;
   transition: all 0.3s var(--ease);
 }
 
-.quadrant.highlight {
+.quadrant:hover,
+.quadrant:focus-visible {
+  border-color: var(--rule-strong);
+  outline: none;
+}
+
+.quadrant.highlight,
+.quadrant.active {
   border-color: var(--accent);
   background: var(--accent-soft);
 }
@@ -862,6 +875,7 @@ h3.slide-title {
 }
 
 .quadrant.highlight .q-name { color: var(--accent); font-weight: 500; }
+.quadrant.active .q-name { color: var(--accent); font-weight: 500; }
 
 .quadrant .q-desc {
   font-family: var(--sans);
@@ -870,6 +884,39 @@ h3.slide-title {
   line-height: 1.4;
   text-transform: none;
   letter-spacing: 0;
+}
+
+.quadrant .q-example {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0 solid var(--accent);
+  transition: all 0.35s var(--ease);
+}
+
+.quadrant.active .q-example {
+  opacity: 1;
+  max-height: 94px;
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px dashed var(--accent);
+}
+
+.quadrant .q-example-label {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.quadrant .q-example-text {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
 }
 
 /* ─────── four dimensions explorer ─────── */
@@ -1422,6 +1469,53 @@ h3.slide-title {
   outline: none;
 }
 
+.audit-sheet {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: 1px solid var(--rule-strong);
+  background: rgba(18, 18, 20, 0.72);
+}
+
+.audit-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: start;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.audit-step:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.audit-step .mark {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.audit-step strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.audit-step span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
 .prompt {
   position: relative;
 }
@@ -1779,24 +1873,40 @@ h3.slide-title {
         <div class="col-head">Incorrect performance</div>
 
         <div class="row-head">With understanding</div>
-        <div class="quadrant">
+        <button class="quadrant" type="button" data-quadrant="0" aria-pressed="false">
           <div class="q-name">Productive success</div>
           <div class="q-desc">Performance and learning aligned.</div>
-        </div>
-        <div class="quadrant">
+          <div class="q-example">
+            <div class="q-example-label">Example</div>
+            <div class="q-example-text">A scholar uses AI to test clarity after writing the synthesis, then can explain every source relation.</div>
+          </div>
+        </button>
+        <button class="quadrant" type="button" data-quadrant="1" aria-pressed="false">
           <div class="q-name">Productive failure</div>
           <div class="q-desc">Struggle that builds future schema.</div>
-        </div>
+          <div class="q-example">
+            <div class="q-example-label">Example</div>
+            <div class="q-example-text">A first theory memo is messy, but the scholar discovers the missing distinction by revising it.</div>
+          </div>
+        </button>
 
         <div class="row-head">Without understanding</div>
-        <div class="quadrant highlight">
+        <button class="quadrant highlight active" type="button" data-quadrant="2" aria-pressed="true">
           <div class="q-name">Unproductive success</div>
           <div class="q-desc">Output looks like learning. The development never occurred.</div>
-        </div>
-        <div class="quadrant">
+          <div class="q-example">
+            <div class="q-example-label">Example</div>
+            <div class="q-example-text">AI produces a fluent literature review paragraph the scholar cannot defend or extend.</div>
+          </div>
+        </button>
+        <button class="quadrant" type="button" data-quadrant="3" aria-pressed="false">
           <div class="q-name">Unproductive failure</div>
           <div class="q-desc">Task exceeds capacity. No learning occurs.</div>
-        </div>
+          <div class="q-example">
+            <div class="q-example-label">Example</div>
+            <div class="q-example-text">A scholar is left alone with a statistical method they cannot parse and no scaffold for entry.</div>
+          </div>
+        </button>
       </div>
       <p class="body-text" style="font-size: 0.95rem; margin-top: 1rem; color: var(--ink-soft);">The artifact is present. The cognitive development that produced it is not. The product <em>looks like</em> the product of understanding.</p>
     </div>
@@ -2008,10 +2118,31 @@ h3.slide-title {
     <div class="slide-inner">
       <div class="eyebrow"><span class="num">18</span> Take this with you · questions welcome</div>
       <h2 class="section-title">A friction audit for <em>your</em> scholarship.</h2>
-      <div class="two-col weighted" style="margin-top: 2.5rem;">
+      <div class="two-col weighted" style="margin-top: 1.5rem;">
         <div>
-          <p class="body-text" style="font-size: 1.05rem;">A one-page diagnostic instrument keyed to the four dimensions. Use it on a chapter you are drafting, an article you are revising, or a methodology you are designing. Ask the diagnostic question, choose one design move, complete the equity check.</p>
-          <p class="body-text" style="margin-top: 1.25rem; font-size: 1.05rem; color: var(--ink-soft);">The most useful version of this framework is the one you apply to your own work this week.</p>
+          <p class="body-text" style="font-size: 0.95rem; margin-bottom: 0.85rem;">Use this one-page diagnostic on a chapter, article, methods section, or assignment you are designing.</p>
+          <div class="audit-sheet" aria-label="One-page friction audit diagnostic instrument">
+            <div class="audit-step">
+              <div class="mark">i</div>
+              <div><strong>Noetic</strong><span>What thinking must remain inside the scholar's own mind?</span></div>
+            </div>
+            <div class="audit-step">
+              <div class="mark">ii</div>
+              <div><strong>Rhetorical</strong><span>Who or what will genuinely push back on the claim?</span></div>
+            </div>
+            <div class="audit-step">
+              <div class="mark">iii</div>
+              <div><strong>Existential</strong><span>Where does the work stay accountable to lived practice or consequence?</span></div>
+            </div>
+            <div class="audit-step">
+              <div class="mark">iv</div>
+              <div><strong>Infrastructural</strong><span>What condition, policy, scaffold, or access issue shapes the work?</span></div>
+            </div>
+            <div class="audit-step">
+              <div class="mark">✓</div>
+              <div><strong>Design move</strong><span>Preserve productive friction, reduce exclusionary friction, and name the evidence of learning.</span></div>
+            </div>
+          </div>
         </div>
         <div style="border-left: 1px solid var(--rule-strong); padding-left: 2rem;">
           <div class="eyebrow" style="margin-bottom: 1rem;">Companion artifacts</div>
@@ -2281,6 +2412,19 @@ const characteristicCards = document.querySelectorAll('.characteristic');
 characteristicCards.forEach(card => {
   card.addEventListener('click', () => {
     characteristicCards.forEach(item => {
+      item.classList.remove('active');
+      item.setAttribute('aria-pressed', 'false');
+    });
+    card.classList.add('active');
+    card.setAttribute('aria-pressed', 'true');
+  });
+});
+
+// ─────── quadrant examples ───────
+const quadrantCards = document.querySelectorAll('.quadrant');
+quadrantCards.forEach(card => {
+  card.addEventListener('click', () => {
+    quadrantCards.forEach(item => {
       item.classList.remove('active');
       item.setAttribute('aria-pressed', 'false');
     });
