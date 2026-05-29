@@ -494,6 +494,19 @@ h3.slide-title {
   color: var(--ink-faint);
 }
 
+.grounding-case .passage a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.grounding-case .passage a:hover,
+.grounding-case .passage a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+
 .grounding-case .question-overlay {
   margin-top: 3rem;
   padding: 1.5rem 2rem;
@@ -517,6 +530,31 @@ h3.slide-title {
   font-style: italic;
   font-weight: 350;
   color: var(--ink);
+}
+
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.source-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.source-links a:hover,
+.source-links a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
 }
 
 /* ─────── timeline (Ong's stages) ─────── */
@@ -2047,17 +2085,22 @@ h3.slide-title {
   </section>
 
   <!-- ─────── 02 · GROUNDING CASE ─────── -->
-  <section class="slide" data-section="Opening" data-time="3" data-notes="This is the cold open. Hand out two short passages on paper before the session begins, or display them here. Give the audience two minutes to read silently. Then ask: 'What's different?' Give it four full minutes of discussion. Resist the urge to fill silence. The audience will surface the productive/unproductive success distinction in their own terms. Only after they have done the work do you name it. This is pedagogical friction enacted in the session about pedagogical friction.">
+  <section class="slide" data-section="Opening" data-time="3" data-notes="This is the cold open. Hand out two short passages on paper before the session begins, or display them here. Give the audience two minutes to read silently. Then ask: 'What's different?' Give it four full minutes of discussion. Resist the urge to fill silence. The audience will surface the productive/unproductive success distinction in their own terms. Only after they have done the work do you name it. Source anchors: Jandrić, P. (2023). Postdigital. In P. Jandrić (Ed.), Encyclopedia of postdigital science and education. Springer. https://doi.org/10.1007/978-3-031-35469-4_23-1 Selwyn, N. (2024). On the limits of artificial intelligence (AI) in education. Nordisk Tidsskrift for Pedagogikk og Kritikk, 10, 3-14. https://doi.org/10.23865/ntpk.v10.6062">
     <div class="slide-inner grounding-case">
       <div class="eyebrow"><span class="num">01</span> Two passages from a literature review</div>
       <h3 class="slide-title">Both are competent. Something is different.</h3>
       <div class="two-col" style="margin-top: 2rem;">
         <div class="passage" data-label="Passage A">
-          Selwyn (2024) and Jandrić (2023) converge on the postdigital condition as a frame for understanding AI in education, though they diverge on the question of agency. Where Selwyn locates resistance in institutional skepticism, Jandrić finds it in the recursive entanglement of human and machine practice. This study extends both by asking what remains pedagogically protected when the symbolic environment itself becomes algorithmically generative.
+          <a href="https://doi.org/10.23865/ntpk.v10.6062" target="_blank" rel="noopener">Selwyn</a> (2024) and <a href="https://doi.org/10.1007/978-3-031-35469-4_23-1" target="_blank" rel="noopener">Jandrić</a> (2023) converge on the postdigital condition as a frame for understanding AI in education, though they diverge on the question of agency. Where Selwyn locates resistance in institutional skepticism, Jandrić finds it in the recursive entanglement of human and machine practice. This study extends both by asking what remains pedagogically protected when the symbolic environment itself becomes algorithmically generative.
         </div>
         <div class="passage" data-label="Passage B">
-          The literature on AI in education converges around several key themes including postdigital approaches, critical perspectives on technology, and questions of human agency. Researchers such as Selwyn and Jandrić have made significant contributions to this growing field, offering valuable insights into how educators can navigate the complex landscape of emerging technologies in learning environments.
+          The literature on AI in education converges around several key themes including postdigital approaches, critical perspectives on technology, and questions of human agency. Researchers such as <a href="https://doi.org/10.23865/ntpk.v10.6062" target="_blank" rel="noopener">Selwyn</a> and <a href="https://doi.org/10.1007/978-3-031-35469-4_23-1" target="_blank" rel="noopener">Jandrić</a> have made significant contributions to this growing field, offering valuable insights into how educators can navigate the complex landscape of emerging technologies in learning environments.
         </div>
+      </div>
+      <div class="source-links" aria-label="Source links for the opening passages">
+        Source anchors:
+        <a href="https://doi.org/10.23865/ntpk.v10.6062" target="_blank" rel="noopener">Selwyn 2024</a>
+        <a href="https://doi.org/10.1007/978-3-031-35469-4_23-1" target="_blank" rel="noopener">Jandrić 2023</a>
       </div>
       <div class="question-overlay">
         <div class="label">After two minutes of silent reading</div>
