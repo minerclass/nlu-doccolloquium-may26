@@ -522,35 +522,94 @@ h3.slide-title {
 /* ─────── timeline (Ong's stages) ─────── */
 
 .timeline {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--rule);
-  margin-top: 2.5rem;
-  border-top: 1px solid var(--rule-strong);
-  border-bottom: 1px solid var(--rule-strong);
+  grid-template-columns: repeat(4, minmax(0, 1fr)) 1.35fr;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 4.8rem 0 3rem;
+  background:
+    linear-gradient(90deg, var(--rule) 0 58%, transparent 58% 61%, rgba(245, 208, 0, 0.32) 61% 100%),
+    linear-gradient(var(--rule), var(--rule));
+  background-size: 100% 1px, calc(100% - 5rem) 2px;
+  background-position: 0 3.25rem, 2.5rem 9.3rem;
+  background-repeat: no-repeat;
+}
+
+.timeline::before,
+.timeline::after {
+  position: absolute;
+  top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.timeline::before {
+  content: "Human origination";
+  left: 0;
+  color: var(--ink-soft);
+}
+
+.timeline::after {
+  content: "Algorithmic origination";
+  right: 0;
+  color: var(--accent);
+}
+
+.timeline-threshold {
+  position: absolute;
+  top: 3.4rem;
+  bottom: 1.35rem;
+  left: 58%;
+  width: 1px;
+  background: repeating-linear-gradient(to bottom, var(--rule-strong), var(--rule-strong) 4px, transparent 4px, transparent 10px);
+}
+
+.timeline-threshold span {
+  position: absolute;
+  left: 50%;
+  bottom: -1.05rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
 .timeline .stage-cell {
-  background: var(--bg);
-  padding: 1.5rem 1.25rem;
+  appearance: none;
+  text-align: center;
+  color: inherit;
+  background: rgba(10, 10, 11, 0.78);
+  border: 1px solid var(--rule-strong);
+  padding: 1.1rem 0.75rem 0.9rem;
   cursor: pointer;
-  transition: background 0.3s var(--ease);
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
   position: relative;
+  min-height: 150px;
+  display: grid;
+  align-content: start;
 }
 
 .timeline .stage-cell:hover,
 .timeline .stage-cell.active {
   background: var(--bg-elevated);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .timeline .stage-cell.active::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
+  top: -2.65rem;
+  left: 50%;
+  width: 2px;
+  height: 2.2rem;
+  transform: translateX(-50%);
   background: var(--accent);
 }
 
@@ -563,9 +622,20 @@ h3.slide-title {
   margin-bottom: 0.5rem;
 }
 
+.timeline .stage-num::before {
+  content: "";
+  display: block;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: -2.85rem auto 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--ink-soft);
+  background: var(--bg);
+}
+
 .timeline .stage-name {
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--ink);
   margin-bottom: 0.35rem;
@@ -578,15 +648,34 @@ h3.slide-title {
 
 .timeline .stage-period {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   color: var(--ink-soft);
   letter-spacing: 0.05em;
 }
 
+.timeline .stage-cell[data-stage="4"] {
+  border-color: var(--accent);
+  background: rgba(245, 208, 0, 0.08);
+}
+
+.timeline .stage-cell[data-stage="4"] .stage-num,
+.timeline .stage-cell[data-stage="4"] .stage-name,
+.timeline .stage-cell[data-stage="4"] .stage-name em {
+  color: var(--accent);
+}
+
+.timeline .stage-cell[data-stage="4"] .stage-num::before {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 24px rgba(245, 208, 0, 0.18);
+}
+
 .timeline-detail {
-  margin-top: 2rem;
-  min-height: 140px;
-  padding: 1.5rem 0;
+  margin-top: 1.25rem;
+  min-height: 120px;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--rule);
+  background: rgba(18, 18, 20, 0.58);
 }
 
 .timeline-detail .detail-name {
@@ -602,6 +691,14 @@ h3.slide-title {
   line-height: 1.6;
   color: var(--ink);
   max-width: 780px;
+}
+
+.timeline-caption {
+  margin-top: 0.85rem;
+  max-width: 880px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 /* ─────── assumptions reveal ─────── */
@@ -812,6 +909,49 @@ h3.slide-title {
   display: none;
 }
 
+.framework-map {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 1rem;
+}
+
+.framework-map[hidden] {
+  display: none;
+}
+
+.map-link {
+  border: 1px solid var(--rule);
+  background: rgba(18, 18, 20, 0.5);
+  padding: 0.75rem 0.85rem;
+}
+
+.map-link .map-assumption {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.35rem;
+}
+
+.map-link .map-rupture {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  margin-bottom: 0.45rem;
+}
+
+.map-link .map-characteristic {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-style: italic;
+  color: var(--accent);
+}
+
 /* ─────── Kapur quadrants ─────── */
 
 .quadrants {
@@ -869,8 +1009,8 @@ h3.slide-title {
 
 .quadrant[data-quadrant="2"],
 .quadrant[data-quadrant="3"] {
-  border-color: rgba(226, 139, 115, 0.36);
-  background: rgba(226, 139, 115, 0.055);
+  border-color: var(--caution);
+  background: rgba(226, 139, 115, 0.08);
 }
 
 .quadrant[data-quadrant="2"].highlight,
@@ -879,6 +1019,23 @@ h3.slide-title {
 .quadrant[data-quadrant="3"].active {
   border-color: var(--caution);
   background: var(--caution-soft);
+}
+
+.quadrant[data-quadrant="2"] {
+  border-width: 2px;
+  background: rgba(226, 139, 115, 0.14);
+}
+
+.quadrant[data-quadrant="2"]::after {
+  content: "AI default";
+  position: absolute;
+  top: 0.7rem;
+  right: 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--caution);
 }
 
 .quadrant .q-name {
@@ -958,6 +1115,109 @@ h3.slide-title {
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
   margin-top: 1.5rem;
+}
+
+.dimension-explorer {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.95fr) minmax(0, 1.05fr);
+  gap: 2rem;
+  align-items: stretch;
+  margin-top: 1.5rem;
+}
+
+.dimension-nest {
+  position: relative;
+  min-height: 440px;
+}
+
+.dimension-ring {
+  position: absolute;
+  appearance: none;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 1rem;
+  color: var(--ink);
+  text-align: center;
+  border: 1px solid var(--rule-strong);
+  background: rgba(18, 18, 20, 0.42);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+
+.dimension-ring:hover,
+.dimension-ring:focus-visible,
+.dimension-ring.active {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.dimension-ring.active {
+  background: rgba(245, 208, 0, 0.08);
+}
+
+.dimension-ring .ring-locus {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.dimension-ring .ring-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.dimension-ring.active .ring-locus,
+.dimension-ring.active .ring-name {
+  color: var(--accent);
+}
+
+.dimension-ring[data-dim="3"] {
+  inset: 0;
+  border-color: rgba(245, 208, 0, 0.55);
+}
+
+.dimension-ring[data-dim="2"] {
+  inset: 4.8rem 3.75rem 2.6rem;
+}
+
+.dimension-ring[data-dim="1"] {
+  inset: 9.3rem 7.1rem 4.7rem;
+}
+
+.dimension-ring[data-dim="0"] {
+  inset: 14rem 10.7rem 7.1rem;
+  background: rgba(245, 208, 0, 0.12);
+  border-color: var(--accent);
+}
+
+.dimension-ring[data-dim="0"].active {
+  background: var(--accent);
+}
+
+.dimension-ring[data-dim="0"].active .ring-locus,
+.dimension-ring[data-dim="0"].active .ring-name {
+  color: var(--bg);
+}
+
+.dimension-panels {
+  display: grid;
+  min-height: 440px;
+}
+
+.dimension-panels .dim-card {
+  grid-area: 1 / 1;
+  display: none;
+  min-height: 100%;
+}
+
+.dimension-panels .dim-card.active {
+  display: grid;
 }
 
 .dim-card {
@@ -1609,7 +1869,7 @@ h3.slide-title {
 @media (max-width: 900px) {
   .slide { padding: 2rem 1.5rem; }
   .chrome.top-left, .chrome.top-right, .chrome.bottom-left { display: none; }
-  .two-col, .closing-layout, .assumptions, .characteristics, .dimensions-grid, .prompts, .compare, .scenario-picker {
+  .two-col, .closing-layout, .assumptions, .characteristics, .dimensions-grid, .dimension-explorer, .prompts, .compare, .scenario-picker {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
@@ -1631,6 +1891,10 @@ h3.slide-title {
   .quadrants { grid-template-columns: 1fr; }
   .quadrants .row-head { writing-mode: horizontal-tb; transform: none; border-right: none; border-bottom: 1px solid var(--rule); }
   .timeline { grid-template-columns: 1fr 1fr; }
+  .dimension-nest,
+  .dimension-panels {
+    min-height: 380px;
+  }
   .deck-switch { top: 0.6rem; font-size: 0.6rem; padding: 0.5rem 0.7rem; }
   .tools-toggle { right: 1rem; top: 3.8rem; }
   .workshop-tools { right: 1rem; top: 6.5rem; }
@@ -1787,36 +2051,38 @@ h3.slide-title {
       <h3 class="slide-title">Three stages, then two more.</h3>
       <p class="body-text" style="margin-bottom: 1.5rem;">Each transition is a cognitive event, not just a technological one. Each stage brings capacities the prior lacked and erodes capacities the prior sustained.</p>
       <div class="timeline" id="ong-timeline">
-        <div class="stage-cell active" data-stage="0">
+        <div class="timeline-threshold" aria-hidden="true"><span>origination threshold</span></div>
+        <button class="stage-cell active" type="button" data-stage="0" aria-pressed="true">
           <div class="stage-num">i</div>
           <div class="stage-name">Primary <em>Orality</em></div>
           <div class="stage-period">~ pre-3500 BCE</div>
-        </div>
-        <div class="stage-cell" data-stage="1">
+        </button>
+        <button class="stage-cell" type="button" data-stage="1" aria-pressed="false">
           <div class="stage-num">ii</div>
           <div class="stage-name">Literacy</div>
           <div class="stage-period">~ 3500 BCE → 1900s</div>
-        </div>
-        <div class="stage-cell" data-stage="2">
+        </button>
+        <button class="stage-cell" type="button" data-stage="2" aria-pressed="false">
           <div class="stage-num">iii</div>
           <div class="stage-name">Secondary <em>Orality</em></div>
           <div class="stage-period">~ 1920s → 2000s</div>
-        </div>
-        <div class="stage-cell" data-stage="3">
+        </button>
+        <button class="stage-cell" type="button" data-stage="3" aria-pressed="false">
           <div class="stage-num">iv</div>
           <div class="stage-name">Algorithmic Secondary</div>
           <div class="stage-period">~ 2006 → 2022</div>
-        </div>
-        <div class="stage-cell" data-stage="4">
+        </button>
+        <button class="stage-cell" type="button" data-stage="4" aria-pressed="false">
           <div class="stage-num">v</div>
           <div class="stage-name">Tertiary <em>Algorithmicity</em></div>
           <div class="stage-period">~ 2022 →</div>
-        </div>
+        </button>
       </div>
       <div class="timeline-detail" id="timeline-detail">
         <div class="detail-name">Primary orality</div>
         <div class="detail-body">Memory-based, communal, situational. Knowledge preserved through repetition, formula, and rhythm. The word lives only in the existential present. There is no text to consult, no record to revise. To know something is to be able to say it now, in the company of others.</div>
       </div>
+      <p class="timeline-caption">The stages overlap rather than replace one another. The dates mark when each condition became dominant, not a clean succession. The threshold marks a change in what is structurally possible: symbolic content can now originate algorithmically at scale.</p>
     </div>
   </section>
 
@@ -1913,6 +2179,23 @@ h3.slide-title {
           </div>
           <span class="click-hint">click for example</span>
         </button>
+      </div>
+      <div class="framework-map" id="characteristic-map" hidden>
+        <div class="map-link">
+          <div class="map-assumption">Humans originate content</div>
+          <div class="map-rupture">Expression no longer necessarily begins in a human mind.</div>
+          <div class="map-characteristic">Noetic displacement</div>
+        </div>
+        <div class="map-link">
+          <div class="map-assumption">Distribution is legible</div>
+          <div class="map-rupture">Curation becomes opaque, personalized, and origin-uncertain.</div>
+          <div class="map-characteristic">Rhetorical saturation</div>
+        </div>
+        <div class="map-link">
+          <div class="map-assumption">Media remain external</div>
+          <div class="map-rupture">The environment reflects the user's own patterns back.</div>
+          <div class="map-characteristic">Existential abstraction</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2012,52 +2295,72 @@ h3.slide-title {
     <div class="slide-inner">
       <div class="eyebrow"><span class="num">13</span> Four dimensions · click to apply to doctoral work</div>
       <h3 class="slide-title">The head, the room, the world, the system.</h3>
-      <div class="dimensions-grid" id="dim-grid">
-        <div class="dim-card active" data-dim="0">
-          <div class="roman">i</div>
-          <div>
-            <div class="dim-name">Noetic friction</div>
-            <div class="dim-locus">The head · internal cognitive resistance</div>
-            <div class="dim-summary">Comprehending difficult text, synthesizing sources, building argument from evidence, revising your own thinking.</div>
-            <div class="doctoral">
-              <div class="doctoral-label">In your scholarship</div>
-              <div class="doctoral-text">Reading the source yourself before asking the AI to summarize it. Writing your first interpretation of a passage before checking what the model would say. The schema you build by struggling with Foucault at 11pm is not transferable to the model that produced the polished paragraph.</div>
+      <div class="dimension-explorer" id="dim-grid">
+        <div class="dimension-nest" aria-label="Nested dimensions of pedagogical friction">
+          <button class="dimension-ring" type="button" data-dim="3" aria-pressed="false">
+            <span class="ring-locus">System</span>
+            <span class="ring-name">Infrastructural friction</span>
+          </button>
+          <button class="dimension-ring" type="button" data-dim="2" aria-pressed="false">
+            <span class="ring-locus">World</span>
+            <span class="ring-name">Existential friction</span>
+          </button>
+          <button class="dimension-ring" type="button" data-dim="1" aria-pressed="false">
+            <span class="ring-locus">Room</span>
+            <span class="ring-name">Rhetorical friction</span>
+          </button>
+          <button class="dimension-ring active" type="button" data-dim="0" aria-pressed="true">
+            <span class="ring-locus">Head</span>
+            <span class="ring-name">Noetic friction</span>
+          </button>
+        </div>
+        <div class="dimension-panels">
+          <div class="dim-card active" data-dim="0">
+            <div class="roman">i</div>
+            <div>
+              <div class="dim-name">Noetic friction</div>
+              <div class="dim-locus">The head · internal cognitive resistance</div>
+              <div class="dim-summary">Comprehending difficult text, synthesizing sources, building argument from evidence, revising your own thinking.</div>
+              <div class="doctoral">
+                <div class="doctoral-label">In your scholarship</div>
+                <div class="doctoral-text">Reading the source yourself before asking the AI to summarize it. Writing your first interpretation of a passage before checking what the model would say. The schema you build by struggling with Foucault at 11pm is not transferable to the model that produced the polished paragraph.</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="dim-card" data-dim="1">
-          <div class="roman">ii</div>
-          <div>
-            <div class="dim-name">Rhetorical friction</div>
-            <div class="dim-locus">The room · social and dialogic struggle</div>
-            <div class="dim-summary">Defending claims against another mind that disagrees, misunderstands, or pushes back in ways you cannot predict.</div>
-            <div class="doctoral">
-              <div class="doctoral-label">In your scholarship</div>
-              <div class="doctoral-text">Your committee meeting is rhetorical friction. So is the conference Q&amp;A when someone has read your paper closely. The AI will not push back the way a chair does. It will not ask the question that exposes the soft assumption in chapter three.</div>
+          <div class="dim-card" data-dim="1">
+            <div class="roman">ii</div>
+            <div>
+              <div class="dim-name">Rhetorical friction</div>
+              <div class="dim-locus">The room · social and dialogic struggle</div>
+              <div class="dim-summary">Defending claims against another mind that disagrees, misunderstands, or pushes back in ways you cannot predict.</div>
+              <div class="doctoral">
+                <div class="doctoral-label">In your scholarship</div>
+                <div class="doctoral-text">Your committee meeting is rhetorical friction. So is the conference Q&amp;A when someone has read your paper closely. The AI will not push back the way a chair does. It will not ask the question that exposes the soft assumption in chapter three.</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="dim-card" data-dim="2">
-          <div class="roman">iii</div>
-          <div>
-            <div class="dim-name">Existential friction</div>
-            <div class="dim-locus">The world · embodied accountability</div>
-            <div class="dim-summary">Presenting your own thinking, in your own voice, with your name attached.</div>
-            <div class="doctoral">
-              <div class="doctoral-label">In your scholarship</div>
-              <div class="doctoral-text">Your name on the dissertation. Your defense. The published article you will be asked about for the rest of your career. Existential friction is what makes scholarship a vocation rather than a deliverable.</div>
+          <div class="dim-card" data-dim="2">
+            <div class="roman">iii</div>
+            <div>
+              <div class="dim-name">Existential friction</div>
+              <div class="dim-locus">The world · embodied accountability</div>
+              <div class="dim-summary">Presenting your own thinking, in your own voice, with your name attached.</div>
+              <div class="doctoral">
+                <div class="doctoral-label">In your scholarship</div>
+                <div class="doctoral-text">Your name on the dissertation. Your defense. The published article you will be asked about for the rest of your career. Existential friction is what makes scholarship a vocation rather than a deliverable.</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="dim-card" data-dim="3">
-          <div class="roman">iv</div>
-          <div>
-            <div class="dim-name">Infrastructural friction</div>
-            <div class="dim-locus">The system · condition of possibility</div>
-            <div class="dim-summary">The institutional conditions, policy, time, professional norms, that make the other three sustainable.</div>
-            <div class="doctoral">
-              <div class="doctoral-label">In your scholarship</div>
-              <div class="doctoral-text">Your IRB, your journal's AI policy, your program's expectations, your chair's stance. The infrastructure decides whether you can practice the other three friction dimensions, or whether the institution quietly pushes you to bypass them.</div>
+          <div class="dim-card" data-dim="3">
+            <div class="roman">iv</div>
+            <div>
+              <div class="dim-name">Infrastructural friction</div>
+              <div class="dim-locus">The system · condition of possibility</div>
+              <div class="dim-summary">The institutional conditions, policy, time, professional norms, that make the other three sustainable.</div>
+              <div class="doctoral">
+                <div class="doctoral-label">In your scholarship</div>
+                <div class="doctoral-text">Your IRB, your journal's AI policy, your program's expectations, your chair's stance. The infrastructure decides whether you can practice the other three friction dimensions, or whether the institution quietly pushes you to bypass them.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -2464,10 +2767,17 @@ const timelineContent = [
 
 timelineCells.forEach((cell, i) => {
   cell.addEventListener('click', () => {
-    timelineCells.forEach(c => c.classList.remove('active'));
+    timelineCells.forEach(c => {
+      c.classList.remove('active');
+      c.setAttribute('aria-pressed', 'false');
+    });
     cell.classList.add('active');
+    cell.setAttribute('aria-pressed', 'true');
     const c = timelineContent[i];
     timelineDetail.innerHTML = '<div class="detail-name">' + c.name + '</div><div class="detail-body">' + c.body + '</div>';
+  });
+  cell.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') e.stopPropagation();
   });
 });
 
@@ -2480,6 +2790,8 @@ document.querySelectorAll('.assumption-card').forEach(card => {
 
 // ─────── characteristic examples ───────
 const characteristicCards = document.querySelectorAll('.characteristic');
+const characteristicMap = document.getElementById('characteristic-map');
+const visitedCharacteristics = new Set(['0']);
 characteristicCards.forEach(card => {
   card.addEventListener('click', () => {
     characteristicCards.forEach(item => {
@@ -2488,6 +2800,13 @@ characteristicCards.forEach(card => {
     });
     card.classList.add('active');
     card.setAttribute('aria-pressed', 'true');
+    visitedCharacteristics.add(card.dataset.characteristic);
+    if (characteristicMap && visitedCharacteristics.size === characteristicCards.length) {
+      characteristicMap.hidden = false;
+    }
+  });
+  card.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') e.stopPropagation();
   });
 });
 
@@ -2502,14 +2821,28 @@ quadrantCards.forEach(card => {
     card.classList.add('active');
     card.setAttribute('aria-pressed', 'true');
   });
+  card.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') e.stopPropagation();
+  });
 });
 
 // ─────── dimension cards ───────
 const dimCards = document.querySelectorAll('.dim-card');
-dimCards.forEach(card => {
-  card.addEventListener('click', () => {
-    dimCards.forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
+const dimRings = document.querySelectorAll('.dimension-ring');
+
+function activateDimension(index) {
+  dimCards.forEach(c => c.classList.toggle('active', c.dataset.dim === index));
+  dimRings.forEach(r => {
+    const active = r.dataset.dim === index;
+    r.classList.toggle('active', active);
+    r.setAttribute('aria-pressed', String(active));
+  });
+}
+
+dimRings.forEach(ring => {
+  ring.addEventListener('click', () => activateDimension(ring.dataset.dim));
+  ring.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') e.stopPropagation();
   });
 });
 
