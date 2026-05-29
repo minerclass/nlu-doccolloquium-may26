@@ -713,8 +713,29 @@ h3.slide-title {
 }
 
 .characteristic {
+  appearance: none;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  background: rgba(18, 18, 20, 0.64);
+  cursor: pointer;
   border-left: 2px solid var(--accent);
-  padding: 0.25rem 0 0.25rem 1.5rem;
+  border-top: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.95rem 1.05rem 1.05rem 1.25rem;
+  min-height: 292px;
+  transition: all 0.35s var(--ease);
+}
+
+.characteristic:hover {
+  border-color: var(--rule-strong);
+  border-left-color: var(--accent);
+}
+
+.characteristic.active {
+  background: linear-gradient(180deg, var(--bg-elevated) 0%, rgba(245, 208, 0, 0.05) 100%);
+  border-color: var(--accent);
 }
 
 .characteristic .locus {
@@ -737,9 +758,56 @@ h3.slide-title {
 }
 
 .characteristic .desc {
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--ink);
+}
+
+.characteristic .example {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0 solid var(--accent);
+  transition: all 0.4s var(--ease);
+}
+
+.characteristic.active .example {
+  opacity: 1;
+  max-height: 145px;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--accent);
+}
+
+.characteristic .example-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+
+.characteristic .example-text {
+  font-size: 0.78rem;
+  line-height: 1.42;
+  color: var(--ink-soft);
+}
+
+.characteristic .click-hint {
+  display: block;
+  margin-top: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.characteristic.active .click-hint {
+  display: none;
 }
 
 /* ─────── Kapur quadrants ─────── */
@@ -1651,22 +1719,38 @@ h3.slide-title {
     <div class="slide-inner">
       <div class="eyebrow"><span class="num">08</span> Three defining characteristics</div>
       <h3 class="slide-title">Each maps to one of the ruptured assumptions.</h3>
-      <div class="characteristics" style="margin-top: 2.5rem;">
-        <div class="characteristic">
+      <p class="body-text" style="margin-bottom: 0.5rem;">Click a characteristic to see a concrete rupture in doctoral work.</p>
+      <div class="characteristics" style="margin-top: 1.5rem;">
+        <button class="characteristic active" type="button" data-characteristic="0" aria-pressed="true">
           <div class="locus">i · cognition</div>
           <div class="name">Noetic<br>displacement</div>
           <div class="desc">Generative and interpretive operations that previously had to occur within the learner's own thinking are offloaded to an external system.</div>
-        </div>
-        <div class="characteristic">
+          <div class="example">
+            <div class="example-label">Example</div>
+            <div class="example-text">A scholar asks AI to synthesize forty articles and accepts the theme map. The review has categories, but the scholar never wrestled with the tensions, absences, or conceptual relationships.</div>
+          </div>
+          <span class="click-hint">click for example</span>
+        </button>
+        <button class="characteristic" type="button" data-characteristic="1" aria-pressed="false">
           <div class="locus">ii · environment</div>
           <div class="name">Rhetorical<br>saturation</div>
           <div class="desc">Origin uncertainty, simulated expression, and simulated dialogue converge. The communicative environment offers responsiveness without genuine contestation.</div>
-        </div>
-        <div class="characteristic">
+          <div class="example">
+            <div class="example-label">Example</div>
+            <div class="example-text">A chatbot generates objections to a chapter claim. It feels like dialogue, but no real reader has disciplinary memory, commitments, or authority to reject the argument.</div>
+          </div>
+          <span class="click-hint">click for example</span>
+        </button>
+        <button class="characteristic" type="button" data-characteristic="2" aria-pressed="false">
           <div class="locus">iii · person</div>
           <div class="name">Existential<br>abstraction</div>
           <div class="desc">Symbolic production is severed from lived experience and material consequence. Text expresses positions without having stakes.</div>
-        </div>
+          <div class="example">
+            <div class="example-label">Example</div>
+            <div class="example-text">AI drafts a polished positionality paragraph. It sounds ethically grounded, but it is not anchored in fieldwork, participants, or the scholar's own accountability.</div>
+          </div>
+          <span class="click-hint">click for example</span>
+        </button>
       </div>
     </div>
   </section>
@@ -2189,6 +2273,19 @@ timelineCells.forEach((cell, i) => {
 document.querySelectorAll('.assumption-card').forEach(card => {
   card.addEventListener('click', () => {
     card.classList.toggle('revealed');
+  });
+});
+
+// ─────── characteristic examples ───────
+const characteristicCards = document.querySelectorAll('.characteristic');
+characteristicCards.forEach(card => {
+  card.addEventListener('click', () => {
+    characteristicCards.forEach(item => {
+      item.classList.remove('active');
+      item.setAttribute('aria-pressed', 'false');
+    });
+    card.classList.add('active');
+    card.setAttribute('aria-pressed', 'true');
   });
 });
 
