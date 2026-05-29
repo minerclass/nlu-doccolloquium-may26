@@ -550,6 +550,10 @@ h3.slide-title {
   border-bottom: 1px solid var(--rule-strong);
 }
 
+.source-links span {
+  color: var(--ink-soft);
+}
+
 .source-links a:hover,
 .source-links a:focus-visible {
   color: var(--accent);
@@ -565,7 +569,7 @@ h3.slide-title {
   grid-template-columns: repeat(4, minmax(0, 1fr)) 1.35fr;
   gap: 1rem;
   margin-top: 2rem;
-  padding: 4.8rem 0 3rem;
+  padding: 4.6rem 0 2.55rem;
   background:
     linear-gradient(90deg, var(--rule) 0 58%, transparent 58% 61%, rgba(245, 208, 0, 0.32) 61% 100%),
     linear-gradient(var(--rule), var(--rule));
@@ -710,8 +714,8 @@ h3.slide-title {
 
 .timeline-detail {
   margin-top: 1.25rem;
-  min-height: 120px;
-  padding: 1.1rem 1.25rem;
+  min-height: 108px;
+  padding: 0.9rem 1.1rem;
   border: 1px solid var(--rule);
   background: rgba(18, 18, 20, 0.58);
 }
@@ -732,11 +736,15 @@ h3.slide-title {
 }
 
 .timeline-caption {
-  margin-top: 0.85rem;
+  margin-top: 0.55rem;
   max-width: 880px;
   color: var(--ink-soft);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   line-height: 1.45;
+}
+
+.timeline-caption + .source-links {
+  margin-top: 0.45rem;
 }
 
 /* ─────── assumptions reveal ─────── */
@@ -2162,7 +2170,7 @@ h3.slide-title {
   </section>
 
   <!-- ─────── 06 · ONG'S TIMELINE (interactive) ─────── -->
-  <section class="slide" data-section="Section I · The Shift" data-time="17" data-notes="Click each stage to reveal more. For audience members who don't know Ong, this is where they catch up. Don't rush. Each stage is a cognitive event, not just a technological one. The point of this slide is that we've been here before: every shift restructured what it meant to know things.">
+  <section class="slide" data-section="Section I · The Shift" data-time="17" data-notes="Click each stage to reveal more. For audience members who don't know Ong, this is where they catch up. Don't rush. Each stage is a cognitive event, not just a technological one. The point of this slide is that we've been here before: every shift restructured what it meant to know things. Ong references: Ong, W. J. (1967). The presence of the word: Some prolegomena for cultural and religious history. Yale University Press. Ong, W. J. (1977). Interfaces of the word: Studies in the evolution of consciousness and culture. Cornell University Press. Ong, W. J. (2002). Orality and literacy: The technologizing of the word (2nd ed.). Routledge. (Original work published 1982). https://doi.org/10.4324/9780203426258 Ong, W. J. (2017). Language as hermeneutic: A primer on the word and digitization (T. D. Zlatic &amp; S. van den Berg, Eds.). Cornell University Press.">
     <div class="slide-inner">
       <div class="eyebrow"><span class="num">05</span> Ong · media restructure consciousness</div>
       <h3 class="slide-title">Three stages, then two more.</h3>
@@ -2200,6 +2208,13 @@ h3.slide-title {
         <div class="detail-body">Memory-based, communal, situational. Knowledge preserved through repetition, formula, and rhythm. The word lives only in the existential present. There is no text to consult, no record to revise. To know something is to be able to say it now, in the company of others.</div>
       </div>
       <p class="timeline-caption">The stages overlap rather than replace one another. The dates mark when each condition became dominant, not a clean succession. The threshold marks a change in what is structurally possible: symbolic content can now originate algorithmically at scale.</p>
+      <div class="source-links" aria-label="Ong source links">
+        Ong sources:
+        <span>1967</span>
+        <span>1977</span>
+        <a href="https://doi.org/10.4324/9780203426258" target="_blank" rel="noopener">2002</a>
+        <span>2017</span>
+      </div>
     </div>
   </section>
 
