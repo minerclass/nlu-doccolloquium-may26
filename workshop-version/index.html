@@ -316,10 +316,61 @@ h3.slide-title {
 
 .opening h1.title {
   margin-bottom: 2.5rem;
+  max-width: 72%;
 }
 
 .opening .subtitle {
   margin-bottom: 4rem;
+  max-width: 66%;
+}
+
+.opening .byline {
+  max-width: 66%;
+}
+
+.opening-access {
+  position: absolute;
+  right: 0;
+  bottom: 1.25rem;
+  width: min(220px, 22vw);
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+  padding: 1rem;
+  border: 1px solid var(--rule-strong);
+  background: rgba(8, 8, 9, 0.74);
+}
+
+.opening-access img {
+  width: min(145px, 14vw);
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #fff;
+  padding: 0.35rem;
+  border-radius: 0.35rem;
+}
+
+.opening-access .access-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.opening-access a {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.opening-access a:hover,
+.opening-access a:focus-visible {
+  color: var(--ink);
+  outline: none;
 }
 
 /* ─────── section divider slide ─────── */
@@ -1327,6 +1378,20 @@ h3.slide-title {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+  .opening-access {
+    position: static;
+    width: min(100%, 260px);
+    margin-top: 1.5rem;
+    justify-items: start;
+  }
+  .opening h1.title,
+  .opening .subtitle,
+  .opening .byline {
+    max-width: none;
+  }
+  .opening-access img {
+    width: 120px;
+  }
   .scenario-picker { min-height: auto; }
   .quadrants { grid-template-columns: 1fr; }
   .quadrants .row-head { writing-mode: horizontal-tb; transform: none; border-right: none; border-bottom: 1px solid var(--rule); }
@@ -1397,6 +1462,13 @@ h3.slide-title {
         <strong>Micah J. Miner, CETL, Ed.S.</strong>
         <span>Director of Innovation &amp; Technology · Doctoral Student</span>
         <span>Curriculum, Advocacy &amp; Policy · National Louis University</span>
+      </div>
+      <div class="opening-access" aria-label="Workshop access link and QR code">
+        <div class="access-label">Join the workshop</div>
+        <a href="https://bit.ly/49Y5GEu" target="_blank" rel="noopener">
+          <img src="assets/workshop-qr.png" alt="QR code for the workshop link">
+          bit.ly/49Y5GEu
+        </a>
       </div>
     </div>
   </section>
