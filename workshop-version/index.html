@@ -20,6 +20,8 @@
   --accent-deep: #c4a600;
   --accent-soft: rgba(245, 208, 0, 0.12);
   --accent-glow: rgba(245, 208, 0, 0.2);
+  --caution: #e28b73;
+  --caution-soft: rgba(226, 139, 115, 0.15);
   --rule: rgba(236, 232, 221, 0.08);
   --rule-strong: rgba(236, 232, 221, 0.22);
   --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
@@ -865,6 +867,20 @@ h3.slide-title {
   background: var(--accent-soft);
 }
 
+.quadrant[data-quadrant="2"],
+.quadrant[data-quadrant="3"] {
+  border-color: rgba(226, 139, 115, 0.36);
+  background: rgba(226, 139, 115, 0.055);
+}
+
+.quadrant[data-quadrant="2"].highlight,
+.quadrant[data-quadrant="2"].active,
+.quadrant[data-quadrant="3"].highlight,
+.quadrant[data-quadrant="3"].active {
+  border-color: var(--caution);
+  background: var(--caution-soft);
+}
+
 .quadrant .q-name {
   font-family: var(--serif);
   font-size: 1.15rem;
@@ -876,6 +892,12 @@ h3.slide-title {
 
 .quadrant.highlight .q-name { color: var(--accent); font-weight: 500; }
 .quadrant.active .q-name { color: var(--accent); font-weight: 500; }
+.quadrant[data-quadrant="2"] .q-name,
+.quadrant[data-quadrant="3"] .q-name,
+.quadrant[data-quadrant="2"].active .q-name,
+.quadrant[data-quadrant="3"].active .q-name {
+  color: var(--caution);
+}
 
 .quadrant .q-desc {
   font-family: var(--sans);
@@ -904,6 +926,11 @@ h3.slide-title {
   border-top: 1px dashed var(--accent);
 }
 
+.quadrant[data-quadrant="2"].active .q-example,
+.quadrant[data-quadrant="3"].active .q-example {
+  border-top-color: var(--caution);
+}
+
 .quadrant .q-example-label {
   font-family: var(--mono);
   font-size: 0.55rem;
@@ -911,6 +938,11 @@ h3.slide-title {
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.35rem;
+}
+
+.quadrant[data-quadrant="2"] .q-example-label,
+.quadrant[data-quadrant="3"] .q-example-label {
+  color: var(--caution);
 }
 
 .quadrant .q-example-text {
